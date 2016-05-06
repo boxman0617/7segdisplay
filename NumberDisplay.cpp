@@ -25,6 +25,7 @@ NumberDisplay::NumberDisplay(int *digitPins, int *segmentLedPins, int refreshRat
 	_digits = digitPins;
 	_brightness = brightness;
 	_n = new NumberLed(segmentLedPins);
+	_dotPin = _n->getDotPin();
 }
 
 /**
@@ -91,13 +92,9 @@ void NumberDisplay::_setDigit(int digit) {
 	@param {int} currentDigit - Current digit we are displaying
  */
 void NumberDisplay::_displayDot(int *dots, int currentDigit) {
-	int i;
-	int dpPin = _n->getDotPin();
-	for(i = 0; i < NUM_OF_DIGITS; i++) {
-		if(currentDigit == i && dots[i] == 1) {
-			digitalWrite(dpPin, HIGH);
-		} else {
-			digitalWrite(dpPin, LOW);
-		}
+	if(dots[currentDigit] == 1) {
+		digitalWrite(_dotPin, HIGH);
+	} else {
+		digitalWrite(_dotPin, LOW);
 	}
 }

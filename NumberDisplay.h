@@ -15,6 +15,7 @@ class NumberDisplay {
 		int *_digits;
 		int _refreshRate;
 		int _brightness;
+		int _dotPin;
 		void _setDigit(int digit);
 		void _displayDot(int *dots, int currentDigit);
 };
